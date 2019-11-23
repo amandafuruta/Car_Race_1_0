@@ -1,0 +1,1 @@
+gcc main.c race.c display.c -o p -D DEBUG=1
