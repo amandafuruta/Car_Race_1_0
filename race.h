@@ -19,26 +19,26 @@
 #define ARROWS 224
 #define ARROW_RIGHT 77
 #define ARROW_LEFT 75
+#define SPACE_BAR 32
+
+#define POINT_CAR 100
+#define LOOP 80
 
 typedef struct{
-    int tipo;
     int i ;
     int j ;
-    int height ;
-    int width ;
+    int width;
 }Car;
 
 int menu(int simbol, int simbol2);
 
 void initCar(Car *race);
 
-void initObstacleRight(Car *obstacleRight);
-
-void initObstacleLeft(Car *obstacleLeft);
+void initObstacle(Car *obstacle, int side);
 
 void begin (char matrix[ROWS][COLUMNS]);
 
-void printMatrix (char matrix[ROWS][COLUMNS], int simbol, int signal , int level/* , int score */);
+void printMatrix (char matrix[ROWS][COLUMNS], int simbol, int signal , int level , int score );
 
 void printCar (char matrix[ROWS][COLUMNS], int simbol, Car race);
 
