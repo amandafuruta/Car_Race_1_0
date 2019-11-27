@@ -1,13 +1,15 @@
 #include "race.h"
+FILE *arq;
 int menu (int simbol, int simbol2){
     char s = simbol, s2 = simbol2;
     int op, i;
+
     printf ("\n\n\n\t\t\t\t");
     for (i = 0; i < 43; i++){
         printf("%c",s2);
     }
     
-    printf ("\n\t\t\t\t\t\tCAR RACING\n");
+    printf ("\n\t\t\t\t\t\tCAR RACE\n");
     printf ("\t\t\t\t");
     for (i = 0; i < 43; i++){
         printf ("%c",s);
@@ -20,11 +22,12 @@ int menu (int simbol, int simbol2){
         printf ("%c",s);
     }
     printf ("\n\t\t\t\tSelecione uma opcao: ");
+    
     printf ("\n\t\t\t\t");
     for (i = 0; i < 43; i++){
         printf ("%c",s2);
     }
-
+    gotoxy(55,10);// move cursor(coluna, linha)
     scanf("%d",&op);
 
     return op;
@@ -193,41 +196,133 @@ void printObstacle(char matrix[ROWS][COLUMNS], int simbol, Car obstacle){
 
     //CARRO 1:
 
+        if(obstacle.i < ROWS+4 ) {
+            if(obstacle.i-4>=0)matrix[obstacle.i-4][obstacle.j]=simbol;
+        }
+
         if(obstacle.i < ROWS+3 ) {
             if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j]=simbol;
+            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j-1]=simbol;
+            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j-2]=simbol;
+            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j+1]=simbol;
+            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j+2]=simbol;
         }
 
         if(obstacle.i < ROWS+2 ) {
             if(obstacle.i-2>=0)matrix[obstacle.i-2][obstacle.j]=simbol;
-            if(obstacle.i-2>=0)matrix[obstacle.i-2][obstacle.j-1]=simbol;
-            if(obstacle.i-2>=0)matrix[obstacle.i-2][obstacle.j-2]=simbol;
-            if(obstacle.i-2>=0)matrix[obstacle.i-2][obstacle.j+1]=simbol;
-            if(obstacle.i-2>=0)matrix[obstacle.i-2][obstacle.j+2]=simbol;
-        }
-
-        if(obstacle.i < ROWS+1 ) {
-            if(obstacle.i-1>=0)matrix[obstacle.i-1][obstacle.j]=simbol;
         }
         
-        if(obstacle.i < ROWS ) {
-            matrix[obstacle.i][obstacle.j-1]=simbol;
-            matrix[obstacle.i][obstacle.j-2]=simbol;
-            matrix[obstacle.i][obstacle.j+1]=simbol;
-            matrix[obstacle.i][obstacle.j+2]=simbol;
+        if(obstacle.i < ROWS + 1 ) {
+            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j-1]=simbol;
+            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j-2]=simbol;
+            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j+1]=simbol;
+            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j+2]=simbol;
         }
 
 }
 
 int collision (char matrix[ROWS][COLUMNS], Car race){
     int retorno=0;
+
+    //UM LADO DO CARRINHO
     if(matrix[race.i-4][race.j+(race.width/2)]!=EMPTY){
         retorno=1;
     }
+
+    //OUTRO LADO
     if(matrix[race.i-4][race.j-(race.width/2)]!=EMPTY){
         retorno=1;
     }
-    /* if(matrix [race.i-4][race.j]!=EMPTY){
+
+    //TOPO DO CARRINHO
+     if(matrix [race.i-4][race.j]!=EMPTY){
         retorno=1;
-    } */
+    } 
     return retorno;
+}
+
+void ranking(int simbol, int simbol2, Data *player, int score){
+    int i;
+    char s = simbol, s2 = simbol2;
+
+    arq= fopen ("Ranking.txt", "a");
+
+    
+    printf ("\n\n\n\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf("%c",s2);
+    }
+    
+    printf ("\n\t\t\t\t\t\tCAR RACE\n");
+    printf ("\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf ("%c",s);
+    }
+    printf ("\n\n\t\t\t\tDigite seu nome: ");
+    printf ("\n\n\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf ("%c",s);
+    }
+    gotoxy(50,7);
+    scanf("%s", &player->nome);
+    player->pontos = score;
+    
+    system("CLS");
+    printf ("\n\n\n\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf("%c",s2);
+    }
+    
+    printf ("\n\t\t\t\t\t\tCAR RACE\n");
+    printf ("\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf ("%c",s);
+    }
+    printf ("\n\n\t\t\t\t\t\tOTIMO JOGO :) ");
+    printf ("\n\n\t\t\t\t\t\tATE LOGO!! ");
+    
+    printf ("\n\n\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf ("%c",s);
+    }
+    printf("\n\n\n");
+
+    fwrite(&player, sizeof (Data), 1, arq);
+
+    fclose(arq);
+
+}
+
+void highScore (int simbol, int simbol2, Data *player){
+    arq= fopen ("Ranking.txt", "r");
+    int i;
+    char s = simbol, s2 = simbol2;
+
+    printf ("\n\n\n\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf("%c",s2);
+    }
+    
+    printf ("\n\t\t\t\t\t\tCAR RACE RANKING\n");
+    printf ("\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf ("%c",s);
+    }
+
+    while (fread (&player, sizeof (Data), 1, arq)){
+        printf("\n\n\t\t\t\t\t\tNome: %s", player->nome);
+        printf("\n\t\t\t\t\t\tScore: %d", player->pontos);
+        printf("\n");
+    }
+    
+    printf ("\n\n\t\t\t\t");
+    for (i = 0; i < 43; i++){
+        printf ("%c",s);
+    }
+    printf("\n\n\n");
+
+
+    
+
+    fclose(arq);
 }

@@ -21,14 +21,19 @@
 #define ARROW_LEFT 75
 #define SPACE_BAR 32
 
-#define POINT_CAR 100
-#define LOOP 80
+#define SCORE_CAR 100
+#define  MAX_SCORE_FIRST_LVL 500
 
 typedef struct{
     int i ;
     int j ;
     int width;
 }Car;
+
+typedef struct Dados {
+    char nome[60];
+    int pontos;
+}Data;
 
 int menu(int simbol, int simbol2);
 
@@ -45,3 +50,7 @@ void printCar (char matrix[ROWS][COLUMNS], int simbol, Car race);
 void printObstacle(char matrix[ROWS][COLUMNS], int simbol, Car obstacle);
 
 int collision (char matrix[ROWS][COLUMNS], Car race);
+
+void ranking(int simbol, int simbol2, Data *player, int score);
+
+void highScore(int simbol, int simbol2,Data *player);

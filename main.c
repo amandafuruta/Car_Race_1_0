@@ -2,11 +2,13 @@
 #include "display.h"
 
 int main (){
+    
     char matrix[ROWS][COLUMNS];
     int keypressed ;
     int signal=0, level, randNumber, timer=1, resp, score=0, speed;
     Car carRace;
     Car obstacle;
+    Data player;
     
     start:
     keypressed=0;
@@ -27,7 +29,7 @@ int main (){
             signal++;
             
         //DETERMINA O LEVEL DE ACORDO COM A PONTUAÇÃO
-            if( signal < LOOP ){
+            if( score < MAX_SCORE_FIRST_LVL ){
                 level = 1;
             }else {
                 level = 2;
@@ -51,11 +53,7 @@ int main (){
                     initObstacle(&obstacle, 0);
                 }
             }
-
-                
-            #if DEBUG==1
-                printf("Signal: %d\n", signal);
-            #endif 
+ 
                 
             gotoxy(0,0);
             printCar (matrix, SIMBOL, carRace);
@@ -74,10 +72,13 @@ int main (){
                     }else{
                         //signal=0;
                         timer=1;
-                        score+= POINT_CAR;
+                        score+= SCORE_CAR;
                     }
                 }else{
-                    system("pause");
+                    system("CLS");
+                    ranking(BORDERTOP, BORDERDOWN, &player, score);
+                    system("PAUSE");
+                    exit(0);
                 }
             } 
             
@@ -112,7 +113,8 @@ int main (){
             goto start;
             break;
             
-            case 2: break;
+            case 2: highScore(BORDERTOP, BORDERDOWN,&player);
+                    break;
 
             case 3: exit(0);
                     break;
