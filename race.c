@@ -1,6 +1,8 @@
 #include "race.h"
+
 FILE *arq;
-int menu (int simbol, int simbol2){
+
+int menu ( int simbol, int simbol2 ){
     char s = simbol, s2 = simbol2;
     int op, i;
 
@@ -11,22 +13,27 @@ int menu (int simbol, int simbol2){
     
     printf ("\n\t\t\t\t\t\tCAR RACE\n");
     printf ("\t\t\t\t");
+
     for (i = 0; i < 43; i++){
         printf ("%c",s);
     }
+
     printf ("\n\t\t\t\t\t\t1.Novo Jogo");
     printf ("\n\t\t\t\t\t\t2.High Scores");
     printf ("\n\t\t\t\t\t\t3.Sair\n");
     printf ("\t\t\t\t");
+
     for (i = 0; i < 43; i++){
         printf ("%c",s);
     }
-    printf ("\n\t\t\t\tSelecione uma opcao: ");
-    
+
+    printf ("\n\t\t\t\tSelecione uma opção: ");
     printf ("\n\t\t\t\t");
+
     for (i = 0; i < 43; i++){
         printf ("%c",s2);
     }
+
     gotoxy(55,10);// move cursor(coluna, linha)
     scanf("%d",&op);
 
@@ -34,13 +41,13 @@ int menu (int simbol, int simbol2){
 }
 
 
-void initCar(Car *race){
+void initCar ( Car *race ){
     race->i = 24;
     race->j = 7; 
     race->width = 5;
 }
 
-void initObstacle(Car *obstacle, int side){
+void initObstacle ( Car *obstacle, int side ){
     if (side) {
         obstacle->i = 0;
         obstacle->j = 11;
@@ -52,7 +59,7 @@ void initObstacle(Car *obstacle, int side){
     }
 }
 
-void begin (char matrix[ROWS][COLUMNS]){
+void begin ( char matrix[ROWS][COLUMNS] ){
     int i, j;
     for (i = 0; i < ROWS; i++){
         for (j = 0; j < COLUMNS; j++){
@@ -61,16 +68,13 @@ void begin (char matrix[ROWS][COLUMNS]){
     }
 }
 
-void printMatrix (char matrix[ROWS][COLUMNS], int simbol, int signal, int level , int score ){
+void printMatrix ( char matrix[ROWS][COLUMNS], int simbol, int signal, int level , int score ){
     int i, j, speed;
     char s;
-    
     s = simbol;
 
-    if(level==1)
-        speed=4;
-    else
-        speed=2;
+    if( level == 1 ) speed=4;
+    else speed=2;
 
     if (score > 1 ){
         printf("SCORE: %d", score); 
@@ -78,49 +82,49 @@ void printMatrix (char matrix[ROWS][COLUMNS], int simbol, int signal, int level 
     
     printf("\n\n");
     printf("\t\t\t\t\t");
-     for(j=0; j<=COLUMNS+3; j++){
+     
+     for ( j = 0; j <= COLUMNS+3; j++){
          printf ("*");
      }
      printf("\n");
 
-     for (i=0; i<ROWS; i++){
+     for ( i = 0; i < ROWS; i++){
          printf("\t\t\t\t\t*");
-         if(signal%speed==0){
-             if(i%2==0 )
+         if( signal % speed == 0 ){
+             if ( i % 2 == 0 )
               printf("%c",s);
              else
                 printf(" ");
          }
          
-         if (signal%speed!=0){
-             if(i%2!=0)
+         if ( signal % speed !=0 ){
+             if( i % 2 != 0 )
              printf("%c",s);
             else
              printf(" ");
          }
 
 
-         for(j=0; j<COLUMNS; j++){
-    
-            printf("%c", matrix[i][j]);
-            
+         for ( j = 0; j < COLUMNS; j++ ){
+            printf("%c", matrix[i][j]); 
          } 
 
-         if(signal%speed==0){
-             if(i%2==0 ){
+         if ( signal % speed == 0 ){
+             if ( i % 2 == 0 ){
              printf("%c*\n",s);
             }else
             printf(" *\n");
          }
-         if(signal%speed!=0){
-             if(i%2!=0 ){
+
+         if ( signal % speed != 0 ){
+             if ( i % 2 != 0 ){
              printf("%c*\n",s);
             }else
             printf(" *\n");
          }
      }
      printf("\t\t\t\t\t");
-     for(j=0; j<=COLUMNS+3; j++){
+     for ( j = 0; j <= COLUMNS+3; j++ ){
          printf ("*");
      }
      printf("\n\n");
@@ -221,30 +225,29 @@ void printObstacle(char matrix[ROWS][COLUMNS], int simbol, Car obstacle){
 
 }
 
-int collision (char matrix[ROWS][COLUMNS], Car race){
-    int retorno=0;
+int collision ( char matrix[ROWS][COLUMNS], Car race ){
+    int retorno = 0;
 
     //UM LADO DO CARRINHO
-    if(matrix[race.i-4][race.j+(race.width/2)]!=EMPTY){
+    if ( matrix[race.i-4][race.j + (race.width/2)] != EMPTY){
         retorno=1;
     }
 
     //OUTRO LADO
-    if(matrix[race.i-4][race.j-(race.width/2)]!=EMPTY){
+    if ( matrix[race.i-4][race.j - (race.width/2)] != EMPTY ){
         retorno=1;
     }
 
     //TOPO DO CARRINHO
-     if(matrix [race.i-4][race.j]!=EMPTY){
+     if ( matrix [race.i-4][race.j] != EMPTY ){
         retorno=1;
     } 
     return retorno;
 }
 
-void ranking(int simbol, int simbol2, Data *player, int score){
+void ranking ( int simbol, int simbol2, Data *player, int score ){
     int i;
     char s = simbol, s2 = simbol2;
-
     arq= fopen ("Ranking.txt", "a");
 
     
@@ -252,20 +255,24 @@ void ranking(int simbol, int simbol2, Data *player, int score){
     for (i = 0; i < 43; i++){
         printf("%c",s2);
     }
-    
+
     printf ("\n\t\t\t\t\t\tCAR RACE\n");
     printf ("\t\t\t\t");
+
     for (i = 0; i < 43; i++){
         printf ("%c",s);
     }
+
     printf ("\n\n\t\t\t\tDigite seu nome: ");
     printf ("\n\n\t\t\t\t");
+
     for (i = 0; i < 43; i++){
         printf ("%c",s);
     }
+
     gotoxy(50,7);
     scanf("%s", &player->nome);
-    player->pontos = score;
+    player->pontos = score; //????????????????????????????????????
     
     system("CLS");
     printf ("\n\n\n\t\t\t\t");
@@ -273,7 +280,7 @@ void ranking(int simbol, int simbol2, Data *player, int score){
         printf("%c",s2);
     }
     
-    printf ("\n\t\t\t\t\t\tCAR RACE\n");
+    printf ("\n\t\t\t\t\t\t  CAR RACE\n");
     printf ("\t\t\t\t");
     for (i = 0; i < 43; i++){
         printf ("%c",s);
@@ -288,13 +295,11 @@ void ranking(int simbol, int simbol2, Data *player, int score){
     printf("\n\n\n");
 
     fwrite(&player, sizeof (Data), 1, arq);
-
     fclose(arq);
-
 }
 
-void highScore (int simbol, int simbol2, Data *player){
-    arq= fopen ("Ranking.txt", "r");
+void highScore ( int simbol, int simbol2, Data *player ){
+    arq = fopen ("Ranking.txt", "r");
     int i;
     char s = simbol, s2 = simbol2;
 
@@ -320,9 +325,6 @@ void highScore (int simbol, int simbol2, Data *player){
         printf ("%c",s);
     }
     printf("\n\n\n");
-
-
-    
 
     fclose(arq);
 }

@@ -35,11 +35,11 @@ typedef struct Dados {
     int pontos;
 }Data;
 
-int menu(int simbol, int simbol2);
+int menu (int simbol, int simbol2);
 
-void initCar(Car *race);
+void initCar (Car *race);
 
-void initObstacle(Car *obstacle, int side);
+void initObstacle (Car *obstacle, int side);
 
 void begin (char matrix[ROWS][COLUMNS]);
 
@@ -47,10 +47,10 @@ void printMatrix (char matrix[ROWS][COLUMNS], int simbol, int signal , int level
 
 void printCar (char matrix[ROWS][COLUMNS], int simbol, Car race);
 
-void printObstacle(char matrix[ROWS][COLUMNS], int simbol, Car obstacle);
+void printObstacle (char matrix[ROWS][COLUMNS], int simbol, Car obstacle);
 
 int collision (char matrix[ROWS][COLUMNS], Car race);
 
-void ranking(int simbol, int simbol2, Data *player, int score);
+void ranking (int simbol, int simbol2, Data *player, int score);
 
-void highScore(int simbol, int simbol2,Data *player);
+void highScore (int simbol, int simbol2,Data *player);

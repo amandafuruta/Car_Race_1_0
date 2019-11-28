@@ -19,7 +19,7 @@ int main (){
     ShowConsoleCursor(0);
     system ("cls");
     
-    resp= menu(BORDERTOP, BORDERDOWN);
+    resp= menu ( BORDERTOP, BORDERDOWN );
 
     system("CLS");
     
@@ -63,14 +63,13 @@ int main (){
 
 
         //VERIFICA COLISÃO E AUMENTA PONTUAÇÃO
-            if( signal % speed == 0 ){
-                if(! collision (matrix, carRace)){
-                    if( obstacle.i-21 < ROWS ) {
+            if ( signal % speed == 0 ){
+                if (! collision (matrix, carRace)){
+                    if ( obstacle.i-21 < ROWS ) {
                         printObstacle(matrix, EMPTY, obstacle);
                         obstacle.i++;
                         timer=0; 
-                    }else{
-                        //signal=0;
+                    }else {
                         timer=1;
                         score+= SCORE_CAR;
                     }
