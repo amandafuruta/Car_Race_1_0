@@ -27,7 +27,7 @@ int menu ( int simbol, int simbol2 ){
         printf ("%c",s);
     }
 
-    printf ("\n\t\t\t\tSelecione uma opção: ");
+    printf ("\n\t\t\t\tSelecione uma opcao: ");
     printf ("\n\t\t\t\t");
 
     for (i = 0; i < 43; i++){
@@ -74,13 +74,11 @@ void printMatrix ( char matrix[ROWS][COLUMNS], int simbol, int signal, int level
     s = simbol;
 
     if( level == 1 ) speed=4;
-    else speed=2;
-
-    if (score > 1 ){
-        printf("SCORE: %d", score); 
-    }
+    else if (level == 2) speed=3;
+    else speed = 2;
     
-    printf("\n\n");
+
+    printf("\n\n\n\n");
     printf("\t\t\t\t\t");
      
      for ( j = 0; j <= COLUMNS+3; j++){
@@ -128,6 +126,11 @@ void printMatrix ( char matrix[ROWS][COLUMNS], int simbol, int signal, int level
          printf ("*");
      }
      printf("\n\n");
+
+      if (score > 1 ){
+        printf("\nSCORE: %d\n", score);
+        printf("LEVEL: %d", level);
+    }
 }
 
 
@@ -145,82 +148,81 @@ void printCar (char matrix[ROWS][COLUMNS], int simbol, Car race){
             matrix[race.i][race.j+2]=simbol;     
 }
 
-void printObstacle(char matrix[ROWS][COLUMNS], int simbol, Car obstacle){
-    
-    //CARRO 3:
+void printObstacle1(char matrix[ROWS][COLUMNS], int simbol, Car obstacle1){
 
-        if(obstacle.i < ROWS+21 ) {
-            if(obstacle.i-21>=0)matrix[obstacle.i-21][obstacle.j]=simbol;
+        if(obstacle1.i < ROWS+4 ) {
+            if(obstacle1.i-4>=0)matrix[obstacle1.i-4][obstacle1.j]=simbol;
         }
 
-        if(obstacle.i < ROWS+20 ) {
-            if(obstacle.i-20>=0)matrix[obstacle.i-20][obstacle.j]=simbol;
-            if(obstacle.i-20>=0)matrix[obstacle.i-20][obstacle.j-1]=simbol;
-            if(obstacle.i-20>=0)matrix[obstacle.i-20][obstacle.j-2]=simbol;
-            if(obstacle.i-20>=0)matrix[obstacle.i-20][obstacle.j+1]=simbol;
-            if(obstacle.i-20>=0)matrix[obstacle.i-20][obstacle.j+2]=simbol;
+        if(obstacle1.i < ROWS+3 ) {
+            if(obstacle1.i-3>=0)matrix[obstacle1.i-3][obstacle1.j]=simbol;
+            if(obstacle1.i-3>=0)matrix[obstacle1.i-3][obstacle1.j-1]=simbol;
+            if(obstacle1.i-3>=0)matrix[obstacle1.i-3][obstacle1.j-2]=simbol;
+            if(obstacle1.i-3>=0)matrix[obstacle1.i-3][obstacle1.j+1]=simbol;
+            if(obstacle1.i-3>=0)matrix[obstacle1.i-3][obstacle1.j+2]=simbol;
         }
 
-        if(obstacle.i < ROWS+19 ) {
-            if(obstacle.i-19>=0)matrix[obstacle.i-19][obstacle.j]=simbol;
+        if(obstacle1.i < ROWS+2 ) {
+            if(obstacle1.i-2>=0)matrix[obstacle1.i-2][obstacle1.j]=simbol;
         }
         
-        if(obstacle.i < ROWS+18 ) {
-            if(obstacle.i-18>=0)matrix[obstacle.i-18][obstacle.j-1]=simbol;
-            if(obstacle.i-18>=0)matrix[obstacle.i-18][obstacle.j-2]=simbol;
-            if(obstacle.i-18>=0)matrix[obstacle.i-18][obstacle.j+1]=simbol;
-            if(obstacle.i-18>=0)matrix[obstacle.i-18][obstacle.j+2]=simbol;
+        if(obstacle1.i < ROWS + 1 ) {
+            if(obstacle1.i-1>=0) matrix[obstacle1.i-1][obstacle1.j-1]=simbol;
+            if(obstacle1.i-1>=0) matrix[obstacle1.i-1][obstacle1.j-2]=simbol;
+            if(obstacle1.i-1>=0) matrix[obstacle1.i-1][obstacle1.j+1]=simbol;
+            if(obstacle1.i-1>=0) matrix[obstacle1.i-1][obstacle1.j+2]=simbol;
         }
 
+}
 
-        //CARRO 2:
-
-        if(obstacle.i < ROWS+12 ) {
-            if(obstacle.i-12>=0)matrix[obstacle.i-12][obstacle.j]=simbol;
+void printObstacle2(char matrix[ROWS][COLUMNS], int simbol, Car obstacle2){
+    if(obstacle2.i < ROWS+4 ) {
+            if(obstacle2.i-4>=0)matrix[obstacle2.i-4][obstacle2.j]=simbol;
         }
 
-        if(obstacle.i < ROWS+11 ) {
-            if(obstacle.i-11>=0)matrix[obstacle.i-11][obstacle.j]=simbol;
-            if(obstacle.i-11>=0)matrix[obstacle.i-11][obstacle.j-1]=simbol;
-            if(obstacle.i-11>=0)matrix[obstacle.i-11][obstacle.j-2]=simbol;
-            if(obstacle.i-11>=0)matrix[obstacle.i-11][obstacle.j+1]=simbol;
-            if(obstacle.i-11>=0)matrix[obstacle.i-11][obstacle.j+2]=simbol;
+        if(obstacle2.i < ROWS+3 ) {
+            if(obstacle2.i-3>=0)matrix[obstacle2.i-3][obstacle2.j]=simbol;
+            if(obstacle2.i-3>=0)matrix[obstacle2.i-3][obstacle2.j-1]=simbol;
+            if(obstacle2.i-3>=0)matrix[obstacle2.i-3][obstacle2.j-2]=simbol;
+            if(obstacle2.i-3>=0)matrix[obstacle2.i-3][obstacle2.j+1]=simbol;
+            if(obstacle2.i-3>=0)matrix[obstacle2.i-3][obstacle2.j+2]=simbol;
         }
 
-        if(obstacle.i < ROWS+10 ) {
-            if(obstacle.i-10>=0)matrix[obstacle.i-10][obstacle.j]=simbol;
-        }
-        
-        if(obstacle.i < ROWS+9 ) {
-            if(obstacle.i-9>=0)matrix[obstacle.i-9][obstacle.j-1]=simbol;
-            if(obstacle.i-9>=0)matrix[obstacle.i-9][obstacle.j-2]=simbol;
-            if(obstacle.i-9>=0)matrix[obstacle.i-9][obstacle.j+1]=simbol;
-            if(obstacle.i-9>=0)matrix[obstacle.i-9][obstacle.j+2]=simbol;
-        }
-
-    //CARRO 1:
-
-        if(obstacle.i < ROWS+4 ) {
-            if(obstacle.i-4>=0)matrix[obstacle.i-4][obstacle.j]=simbol;
-        }
-
-        if(obstacle.i < ROWS+3 ) {
-            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j]=simbol;
-            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j-1]=simbol;
-            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j-2]=simbol;
-            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j+1]=simbol;
-            if(obstacle.i-3>=0)matrix[obstacle.i-3][obstacle.j+2]=simbol;
-        }
-
-        if(obstacle.i < ROWS+2 ) {
-            if(obstacle.i-2>=0)matrix[obstacle.i-2][obstacle.j]=simbol;
+        if(obstacle2.i < ROWS+2 ) {
+            if(obstacle2.i-2>=0)matrix[obstacle2.i-2][obstacle2.j]=simbol;
         }
         
-        if(obstacle.i < ROWS + 1 ) {
-            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j-1]=simbol;
-            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j-2]=simbol;
-            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j+1]=simbol;
-            if(obstacle.i-1>=0) matrix[obstacle.i-1][obstacle.j+2]=simbol;
+        if(obstacle2.i < ROWS + 1 ) {
+            if(obstacle2.i-1>=0) matrix[obstacle2.i-1][obstacle2.j-1]=simbol;
+            if(obstacle2.i-1>=0) matrix[obstacle2.i-1][obstacle2.j-2]=simbol;
+            if(obstacle2.i-1>=0) matrix[obstacle2.i-1][obstacle2.j+1]=simbol;
+            if(obstacle2.i-1>=0) matrix[obstacle2.i-1][obstacle2.j+2]=simbol;
+        }
+
+}
+
+void printObstacle3(char matrix[ROWS][COLUMNS], int simbol, Car obstacle3){
+    if(obstacle3.i < ROWS+4 ) {
+            if(obstacle3.i-4>=0)matrix[obstacle3.i-4][obstacle3.j]=simbol;
+        }
+
+        if(obstacle3.i < ROWS+3 ) {
+            if(obstacle3.i-3>=0)matrix[obstacle3.i-3][obstacle3.j]=simbol;
+            if(obstacle3.i-3>=0)matrix[obstacle3.i-3][obstacle3.j-1]=simbol;
+            if(obstacle3.i-3>=0)matrix[obstacle3.i-3][obstacle3.j-2]=simbol;
+            if(obstacle3.i-3>=0)matrix[obstacle3.i-3][obstacle3.j+1]=simbol;
+            if(obstacle3.i-3>=0)matrix[obstacle3.i-3][obstacle3.j+2]=simbol;
+        }
+
+        if(obstacle3.i < ROWS+2 ) {
+            if(obstacle3.i-2>=0)matrix[obstacle3.i-2][obstacle3.j]=simbol;
+        }
+        
+        if(obstacle3.i < ROWS + 1 ) {
+            if(obstacle3.i-1>=0) matrix[obstacle3.i-1][obstacle3.j-1]=simbol;
+            if(obstacle3.i-1>=0) matrix[obstacle3.i-1][obstacle3.j-2]=simbol;
+            if(obstacle3.i-1>=0) matrix[obstacle3.i-1][obstacle3.j+1]=simbol;
+            if(obstacle3.i-1>=0) matrix[obstacle3.i-1][obstacle3.j+2]=simbol;
         }
 
 }
@@ -248,6 +250,7 @@ int collision ( char matrix[ROWS][COLUMNS], Car race ){
 void ranking ( int simbol, int simbol2, Data *player, int score ){
     int i;
     char s = simbol, s2 = simbol2;
+    
     arq= fopen ("Ranking.txt", "a");
 
     
@@ -263,7 +266,7 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
         printf ("%c",s);
     }
 
-    printf ("\n\n\t\t\t\tDigite seu nome: ");
+    printf ("\n\n\t\t\t\tDigite seu nome: // score: %d", score);
     printf ("\n\n\t\t\t\t");
 
     for (i = 0; i < 43; i++){
@@ -271,8 +274,14 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
     }
 
     gotoxy(50,7);
-    scanf("%s", &player->nome);
-    player->pontos = score; //????????????????????????????????????
+    fflush(stdin);
+    gets(player->nome);
+    
+
+    //ELE PEGA O NOME E EU GRAVO O NOME... E RECEBE SCORE COMO PARAMETRO.. 
+    // MAS NÃO SEI GRAVAR ELE NO ARQUIVO!! VC SABE COMO FAZ??
+
+    
     
     system("CLS");
     printf ("\n\n\n\t\t\t\t");

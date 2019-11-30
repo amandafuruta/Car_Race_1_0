@@ -21,8 +21,9 @@
 #define ARROW_LEFT 75
 #define SPACE_BAR 32
 
-#define SCORE_CAR 100
+#define SCORE_CAR 50
 #define  MAX_SCORE_FIRST_LVL 500
+#define MAX_SCORE_SECOND_LVL 1000
 
 typedef struct{
     int i ;
@@ -47,7 +48,11 @@ void printMatrix (char matrix[ROWS][COLUMNS], int simbol, int signal , int level
 
 void printCar (char matrix[ROWS][COLUMNS], int simbol, Car race);
 
-void printObstacle (char matrix[ROWS][COLUMNS], int simbol, Car obstacle);
+void printObstacle1 (char matrix[ROWS][COLUMNS], int simbol, Car obstacle1);
+
+void printObstacle2 (char matrix[ROWS][COLUMNS], int simbol, Car obstacle2);
+
+void printObstacle3 (char matrix[ROWS][COLUMNS], int simbol, Car obstacle3);
 
 int collision (char matrix[ROWS][COLUMNS], Car race);
 
