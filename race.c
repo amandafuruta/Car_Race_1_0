@@ -1,6 +1,6 @@
 #include "race.h"
-
 FILE *arq;
+
 
 int menu ( int simbol, int simbol2 ){
     char s = simbol, s2 = simbol2;
@@ -248,10 +248,11 @@ int collision ( char matrix[ROWS][COLUMNS], Car race ){
 }
 
 void ranking ( int simbol, int simbol2, Data *player, int score ){
+    
     int i;
     char s = simbol, s2 = simbol2;
-    
-    arq= fopen ("Ranking.txt", "a");
+    player = malloc (sizeof(Data) * 1);
+    arq= fopen ("Ranking.txt", "ab");
 
     
     printf ("\n\n\n\t\t\t\t");
@@ -266,7 +267,7 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
         printf ("%c",s);
     }
 
-    printf ("\n\n\t\t\t\tDigite seu nome: // score: %d", score);
+    printf ("\n\n\t\t\t\tDigite seu nome: ");
     printf ("\n\n\t\t\t\t");
 
     for (i = 0; i < 43; i++){
@@ -276,12 +277,7 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
     gotoxy(50,7);
     fflush(stdin);
     gets(player->nome);
-    
-
-    //ELE PEGA O NOME E EU GRAVO O NOME... E RECEBE SCORE COMO PARAMETRO.. 
-    // MAS NÃO SEI GRAVAR ELE NO ARQUIVO!! VC SABE COMO FAZ??
-
-    
+    player->pontos=score;
     
     system("CLS");
     printf ("\n\n\n\t\t\t\t");
@@ -303,12 +299,13 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
     }
     printf("\n\n\n");
 
-    fwrite(&player, sizeof (Data), 1, arq);
+    fwrite(player, sizeof (Data), 1, arq);
     fclose(arq);
 }
 
 void highScore ( int simbol, int simbol2, Data *player ){
-    arq = fopen ("Ranking.txt", "r");
+    player = malloc (sizeof(Data) * 1);
+    arq = fopen ("Ranking.txt", "rb");
     int i;
     char s = simbol, s2 = simbol2;
 
@@ -323,7 +320,7 @@ void highScore ( int simbol, int simbol2, Data *player ){
         printf ("%c",s);
     }
 
-    while (fread (&player, sizeof (Data), 1, arq)){
+    while (fread (player, sizeof (Data), 1, arq)){
         printf("\n\n\t\t\t\t\t\tNome: %s", player->nome);
         printf("\n\t\t\t\t\t\tScore: %d", player->pontos);
         printf("\n");

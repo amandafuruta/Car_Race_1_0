@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<conio.h>
 #include<time.h>
+#include<string.h>
 
 #define ROWS 25
 #define COLUMNS 15 //tive que diminuir para arrumar o bug- car no centro com espaço sobrando 
