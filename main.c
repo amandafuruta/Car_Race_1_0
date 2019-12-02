@@ -133,6 +133,7 @@ int main (){
                         timer = 0;
                     } 
                 }else{
+
                     system("CLS");
                     ranking(BORDERTOP, BORDERDOWN, &player, score);
                     system("PAUSE");
@@ -154,13 +155,13 @@ int main (){
                 case BUTTON_A:
                 case BUTTON_a:
                 case ARROW_LEFT:
-                    if(carRace.j-2>0) carRace.j --;
+                    if(carRace.j-2>0) carRace.j=4;
                 break;
 
                 case BUTTON_D:
                 case BUTTON_d:
                 case ARROW_RIGHT:
-                    if(carRace.j+2<COLUMNS-1) carRace.j++;
+                    if(carRace.j+2<COLUMNS-1) carRace.j=10;
                 break;
 
                 case SPACE_BAR:
