@@ -244,6 +244,7 @@ int collision ( char matrix[ROWS][COLUMNS], Car race ){
      if ( matrix [race.i-4][race.j] != EMPTY ){
         retorno=1;
     } 
+
     return retorno;
 }
 
@@ -278,6 +279,7 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
     fflush(stdin);
     gets(player->nome);
     player->pontos=score;
+    
     
     system("CLS");
     printf ("\n\n\n\t\t\t\t");
@@ -321,9 +323,10 @@ void highScore ( int simbol, int simbol2, Data *player ){
     }
 
     while (fread (player, sizeof (Data), 1, arq)){
-        printf("\n\n\t\t\t\t\t\tNome: %s", player->nome);
-        printf("\n\t\t\t\t\t\tScore: %d", player->pontos);
+        printf("\n\n\t\t\t\t\tNome: %s", player->nome);
+        printf("\n\t\t\t\t\tScore: %d", player->pontos);
         printf("\n");
+        
     }
     
     printf ("\n\n\t\t\t\t");
