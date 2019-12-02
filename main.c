@@ -22,10 +22,12 @@ int main (){
     ShowConsoleCursor(0);
     system ("cls");
     
+    //CHAMADA DO MENU
     resp= menu ( BORDERTOP, BORDERDOWN );
 
     system("CLS");
     
+    //RESULTADO DA ESCOLHA DAS OPÇÕES NO MENU
     switch(resp){
         case 1:
             while (keypressed != ESC){
@@ -50,6 +52,7 @@ int main (){
             }
 
         //FAZ O SORTEIO DOS CARROS
+            //CARRO 1
             if(timer == 0){
                 randNumber = rand()%100;
 
@@ -60,6 +63,7 @@ int main (){
                 }
             }
 
+            //CARRO 2
             if(timer == 2){
                 randNumber = rand()%100;
 
@@ -70,6 +74,7 @@ int main (){
                 }
             }
 
+            //CARRO 3
             if(timer == 4){
                 randNumber = rand()%100;
 
@@ -105,7 +110,7 @@ int main (){
                         timer=1;
                     } 
                     if (obstacle1.i-4 == 11){
-                        timer=2;
+                        timer=2;    //PARA FAZER CHAMAR O SORTEIO DO CARRO 2
                     }
                 
                     if ( obstacle2.i-4 < ROWS ) {
@@ -120,7 +125,7 @@ int main (){
                         timer = 1;
                     }
                     if ( obstacle2.i-4 == 11){
-                        timer = 4;
+                        timer = 4;      //CHAMA O SORTEIO DO CARRO 3
                     }
 
                     if ( obstacle3.i-4 < ROWS ) {
@@ -172,9 +177,11 @@ int main (){
             goto start;
             break;
             
+            //ESCOLHA DA SEGUNDA OPÇÃO DO MENU- MOSTRA O HIGH SCORE
             case 2: highScore(BORDERTOP, BORDERDOWN,&player);
                     break;
 
+            //TERCEIRA ESCOLHA NO MENU - SAI DO JOGO
             case 3: exit(0);
                     break;
 
