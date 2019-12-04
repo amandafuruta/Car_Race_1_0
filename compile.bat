@@ -1,1 +1,1 @@
-gcc main.c race.c display.c -o p -D DEBUG=1
+gcc -std=c99 main.c race.c display.c -o p -D DEBUG=1

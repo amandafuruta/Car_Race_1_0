@@ -1,11 +1,8 @@
 #include "display.h"
-//#include<conio.h>
-//#include<windows.h>
 
 void gotoxy (int x, int y)
 {
-    COORD coord = {0, 0};
-    coord.X = x; coord.Y = y; // X and Y coordinates
+    COORD coord = { x, y };
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 

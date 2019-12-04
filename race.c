@@ -306,7 +306,7 @@ void ranking ( int simbol, int simbol2, Data *player, int score ){
 }
 
 void highScore ( int simbol, int simbol2, Data *player ){
-    player = malloc (sizeof(Data) * 1);
+    player = malloc (sizeof(Data));
     arq = fopen ("Ranking.txt", "rb");
     int i;
     char s = simbol, s2 = simbol2;
@@ -322,12 +322,51 @@ void highScore ( int simbol, int simbol2, Data *player ){
         printf ("%c",s);
     }
 
-    while (fread (player, sizeof (Data), 1, arq)){
-        printf("\n\n\t\t\t\t\tNome: %s", player->nome);
-        printf("\n\t\t\t\t\tScore: %d", player->pontos);
-        printf("\n");
-        
+    int n = 5;
+
+    Data _score[5], AUX;
+
+    for(int i = 0; i < 5; ++i) _score[i].pontos = 0;
+    printf("%d", i);
+    fread (&_score, sizeof (Data), n, arq);
+
+    for(int i = 0; i < n; i++) for(int j = 0; j < n; j++) {
+        if(_score[j].pontos < _score[j + 1].pontos){
+            AUX = _score[j];
+            _score[j] = _score[j + 1];
+            _score[j + 1] = AUX;
+        }        
+
+        if(i == n - 1 && _score[j].pontos > 0){
+            printf("\n\n\t\t\t\t\tNome: %s", _score[j].nome);
+            printf("\n\t\t\t\t\tScore: %d", _score[j].pontos);
+            printf("\n");
+        }
     }
+
+    // Data * _score = calloc(n, sizeof(Data));
+    
+    // while (fread (player, sizeof (Data), 1, arq)){
+    //     _score[cont] = *player;
+    //     ++cont;
+    //     _score = realloc(_score, (++n) * sizeof(Data));
+    // }
+
+    // Data AUX;
+
+    // for(int i = 0; i < n - 1; i++) for(int j = 0; j < n - 1; j++) {
+        // if(_score[j].pontos < _score[j + 1].pontos){
+        //     AUX = _score[j];
+        //     _score[j] = _score[j + 1];
+        //     _score[j + 1] = AUX;
+        // }        
+
+        // if(i == n - 2 && _score[j].pontos > 0){
+        //     printf("\n\n\t\t\t\t\tNome: %s", _score[j].nome);
+        //     printf("\n\t\t\t\t\tScore: %d", _score[j].pontos);
+        //     printf("\n");
+        // }
+    // }
     
     printf ("\n\n\t\t\t\t");
     for (i = 0; i < 43; i++){
